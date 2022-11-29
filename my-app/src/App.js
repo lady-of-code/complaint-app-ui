@@ -1,9 +1,41 @@
 import List from './components/complaints/list/index'
 import './App.css';
+import Add from './components/complaints/add';
+import React from 'react';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 
-function App() {
+
+class App extends React.Component
+ {
+  constructor(props){
+    super(props)
+   this.state={data:[{
+    name:"deepak",
+    date:"12-24-2000",
+    complaint:"this is some random complaint"
+   }, 
+   {
+    name:"sakshi",
+    date:"12-24-2000",
+    complaint:"this is some random complaint"
+   },
+   {
+    name:"nishant",
+    date:"12-24-2000",
+    complaint:"this is some random complaint"
+   },
+   {
+    name:"shreya",
+    date:"12-24-2000",
+    complaint:"this is some random complaint"
+   }]
+  }
+}
+  render()
+  {
+    let {data}=this.state;
   return (
-    <><><><div className="main-container">
+    <div><div className="main-container">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">Navbar</a>
@@ -22,35 +54,37 @@ function App() {
                 <a className="nav-link" href="#">Pricing</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a className="nav-link disabled" href="#"  aria-disabled="true">Disabled</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
       <div className='container'>
-        <List />
-        <List />
-        <List />
+      {data.map(
+        (d,i)=>{
+          {/* console.log(d,i); */}
+          return(
+          <React.Fragment>
+          <List name ={d.name} date= {d.date} complaint={d.complaint}/>
+          </React.Fragment>
+        )}
+      )}
+        {/* <List name ="deepak " date="14-12-23000" complaint="this is a random complaint"/>
+        <List name ="sakshi " date="14-12-23000" complaint="this is a random complaint"/>
+        <List name ="ansh " date="14-12-23000" complaint="this is a random complaint"/>
+        <List name ="shruti " date="14-12-23000" complaint="this is a random complaint"/> */}
+         {/* <Add name="add complaints"/>
+         <Add name="Edit Complaints"/> */}
+
+        {/* {this.props.children} */}
       </div>
-    </div><div><h1>Forms</h1></div></><div></div></><div><form>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1"/>
-        </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
-    </form></div></>
+    </div>
+    </div>
 
   );
 }
+ }
 
 export default App;
+

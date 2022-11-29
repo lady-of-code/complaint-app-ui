@@ -6,11 +6,22 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import { Router, Route } from 'react-router'
+// import List from './components/complaints/list';
+// import Add from './components/complaints/add';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
+  
   <React.StrictMode>
-    <App />
+   {/* <Router> */}
+   <App/>
+         {/* <Route exact path = "/" component = {List} />
+         <Route path = "add" component = {Add} /> */}
+         {/* <Route exact path = "/" component = {Add} />
+    
+   </Router>   */}
   </React.StrictMode>
 );
 
