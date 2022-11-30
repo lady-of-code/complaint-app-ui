@@ -13,19 +13,33 @@ The [React Application](https://reactjs.org/) build with the help of npm
 ```
     npm install
 ```
-## usage
+## Usage
 
 **Step 1:** pen the terminal in Visual Studio Code and change the directory to `my-app` 
 ``` 
     cd my-app
 ```
 
-**Step 1:** Start the application 
+**Step 2:** Start the application 
 ```
     npm start
 ```
+## Update the Github Page
 
+**Step 1:** pen the terminal in Visual Studio Code and change the directory to `my-app` 
+``` 
+    cd my-app
+```
 
+**Step 2:** Build the App 
+```
+    npm run build
+```
+
+**Step 3:** Publish the code by using following command 
+```
+    npm run publish
+```
 
 ## Contributors
 1. [Sakshi Sharma](https://github.com/lady-of-code)
