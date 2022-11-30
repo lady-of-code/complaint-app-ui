@@ -1,44 +1,50 @@
 import React from "react";
 import List from "./../../../components/complaints/list";
 
-class ListPage extends React.Component
-{
-    constructor(props){
+class ListPage extends React.Component {
+    constructor(props) {
         super(props);
+        let storage = localStorage.getItem("complaint");
+        // console.log(JSON.stringify(storage));
 
-        this.state={data:[{
-            name:"deepak",
-            date:"12-24-2000",
-            complaint:"this is some random complaint"
-           }, 
-           {
-            name:"sakshi",
-            date:"12-24-2000",
-            complaint:"this is some random complaint"
-           },
-           {
-            name:"nishant",
-            date:"12-24-2000",
-            complaint:"this is some random complaint"
-           },
-           {
-            name:"shreya",
-            date:"12-24-2000",
-            complaint:"this is some random complaint"
-           }]
-          }
+        if (storage == null) { storage = []; }
+        else { storage = JSON.parse(storage); }
+
+        console.log(storage);
+
+        this.state = { data: storage }
+        this.deleteComplaints = this.deleteComplaints.bind(this)
     }
-    render(){
-        let {data}=this.state;
-        return(<React.Fragment>
-            {data.map(
-                (d,i)=>{
-                    return(
-                    <React.Fragment>
-                        <List name ={d.name} date= {d.date} complaint={d.complaint}/>
-                    </React.Fragment>)
-                }
-            )}
+    deleteComplaints(event) {
+        localStorage.removeItem("complaint");
+        this.setState({
+            data: []
+        })
+
+    }
+    render() {
+        let { data } = this.state;
+        return (<React.Fragment>
+            <div className="container">
+                <div className="row">
+                    <div className="col pt-3">
+                        <button type="button" className="btn btn-outline-danger float-end" onClick={this.deleteComplaints}>Delete All Data</button>
+                    </div>
+                </div>
+            </div>
+            <div className="container">
+                <div className="row">
+                    {data.map(
+                        (d, i) => {
+                            return (
+                                <React.Fragment key={i}>
+
+                                    <List name={d.name} date={d.date} email={d.email} complaint={d.complaint} />
+                                </React.Fragment>)
+                        }
+                    )}
+                </div>
+            </div>
         </React.Fragment>)
     }
 }
