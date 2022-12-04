@@ -1,6 +1,5 @@
 # lady-of-code Github Page
 
-<br/>
 The [React Application](https://reactjs.org/) build with the help of npm
 
 ## Installation
