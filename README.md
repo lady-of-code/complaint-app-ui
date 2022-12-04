@@ -1,4 +1,4 @@
-# lady-of-code Github Page
+# react-complaint-app
 
 The [React Application](https://reactjs.org/) build with the help of npm
 
