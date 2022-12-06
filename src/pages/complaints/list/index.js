@@ -12,7 +12,8 @@ class ListComplaint extends React.Component {
 
     async componentDidMount(){
         let apiRes = await complaintService.fetchListAPI();
-        this.setState({label:apiRes.label})
+        if(apiRes!=null)
+            this.setState({label:apiRes.label})
     }
 
     deleteComplaints(event) {
@@ -21,7 +22,7 @@ class ListComplaint extends React.Component {
             data: []
         })
     }
-    
+
     render() {
         let { data,label } = this.state;
         return (<React.Fragment>
