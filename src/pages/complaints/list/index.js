@@ -7,20 +7,21 @@ class ListComplaint extends React.Component {
         super(props);
         let storage = complaintService.list();
         this.state = { data: storage, label:" " }
-        console.log(storage);
         this.deleteComplaints = this.deleteComplaints.bind(this)
     }
+
     async componentDidMount(){
-        let label = await complaintService.fetchListAPI()
-        this.setState({label:label})
+        let apiRes = await complaintService.fetchListAPI();
+        this.setState({label:apiRes.label})
     }
+
     deleteComplaints(event) {
         complaintService.deleteAll();
         this.setState({
             data: []
         })
-
     }
+    
     render() {
         let { data,label } = this.state;
         return (<React.Fragment>
