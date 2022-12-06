@@ -12,7 +12,8 @@ class ListComplaint extends React.Component {
     }
     async componentDidMount(){
         let label = await complaintService.fetchListAPI()
-        this.setState({label:label})
+         console.log(label.data);
+        this.setState({data:label.data})
     }
     deleteComplaints(event) {
         complaintService.deleteAll();
@@ -38,7 +39,7 @@ class ListComplaint extends React.Component {
                         (d, i) => {
                             return (
                                 <div className="col-12 p-2" key={i}>
-                                    <Card title={d.name + ' - '+ d.email} subtitle={d.date} text={d.complaint} />
+                                    <Card title={d.name + ' - '+ d.email} subtitle={d.created_at} text={d.complaint_desc} />
                                 </div>)
                         }
                     )}
