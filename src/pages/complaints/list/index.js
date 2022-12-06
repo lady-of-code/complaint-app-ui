@@ -1,30 +1,21 @@
 import React from "react";
-import List from "./../../../components/complaints/list";
+import complaintService from "../../../services/complaints.service";
+import Card from "../../../ui-components/card";
 
-class ListPage extends React.Component {
+class ListComplaint extends React.Component {
     constructor(props) {
         super(props);
-        let storage = localStorage.getItem("complaint");
-        // console.log(JSON.stringify(storage));
-
-        if (storage == null) { storage = []; }
-        else { storage = JSON.parse(storage); }
-
-        console.log(storage);
-
+        let storage = complaintService.list();
         this.state = { data: storage, label:" " }
+        console.log(storage);
         this.deleteComplaints = this.deleteComplaints.bind(this)
     }
-    componentDidMount(){
-        fetch("http://localhost:4000/api/complaints")
-        .then(res => res.json())
-        .then((res)=>{
-         console.log("respons is",res);
-         this.setState({label:res.data})
-        })
+    async componentDidMount(){
+        let label = await complaintService.fetchListAPI()
+        this.setState({label:label})
     }
     deleteComplaints(event) {
-        localStorage.removeItem("complaint");
+        complaintService.deleteAll();
         this.setState({
             data: []
         })
@@ -46,10 +37,9 @@ class ListPage extends React.Component {
                     {data.map(
                         (d, i) => {
                             return (
-                                <React.Fragment key={i}>
-
-                                    <List name={d.name} date={d.date} email={d.email} complaint={d.complaint} />
-                                </React.Fragment>)
+                                <div className="col-12 p-2" key={i}>
+                                    <Card title={d.name + ' - '+ d.email} subtitle={d.date} text={d.complaint} />
+                                </div>)
                         }
                     )}
                 </div>
@@ -58,4 +48,4 @@ class ListPage extends React.Component {
     }
 }
 
-export default ListPage;
+export default ListComplaint;
