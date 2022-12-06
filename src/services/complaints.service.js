@@ -22,12 +22,8 @@ const complaintService = {
     },
     fetchListAPI:async ()=>{
         try{
-            let response;
-            await fetch(complaintService.apiUrl+"/complaints")
-            .then(res => res.json())
-            .then((res)=>{
-                response = res;
-            })
+            let response = await fetch(complaintService.apiUrl+"/complaints");
+            response = await response.json();
             return response;
         }catch(e){
             console.log("error is :",e);
