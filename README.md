@@ -1,4 +1,4 @@
-# react-complaint-app-ui
+# complaint-app-ui
 
 The [React Application](https://reactjs.org/) build with the help of npm
 
