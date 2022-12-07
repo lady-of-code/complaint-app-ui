@@ -29,7 +29,27 @@ const complaintService = {
             console.log("error is :",e);
         }
         
+    },
+    addComplaint:async (complaint)=>{
+        console.log(complaint);
+        const res = await fetch(`${complaintService.apiUrl}/complaints`, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": "token-value",
+            },
+            body: JSON.stringify(complaint),
+          });
+    
+          if (!res.ok) {
+            const message = `An error has occured: ${res.status} - ${res.statusText}`;
+            throw new Error(message);
+          }
+    
+          const data = await res.json();
+          return data;
     }
+
 };
 
 export default complaintService;

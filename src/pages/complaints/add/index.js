@@ -4,22 +4,17 @@ import complaintService from './../../../services/complaints.service';
 class AddComplaint extends React.Component {
     constructor(props) {
         super(props)
-        console.log("heyaaa good morning", this.props)
+        // console.log("heyaaa good morning", this.props)
         this.onFormSubmit = this.onFormSubmit.bind(this)
         this.onFormType = this.onFormType.bind(this)
-        this.state = { name: "", email: "", complaint: "", date: "" }
+        this.state = { name: "", email: "", complaint_desc: ""}
     }
-    saveDate() {
-
-        let date = new Date();
-        let month = date.getMonth() + 1;
-        return (date.getDate() + "/" + month + "/" + date.getFullYear());
-    }
+   
     onFormSubmit(event) {
         event.preventDefault()
         let form = this.state;
-        form.date = this.saveDate();
-        complaintService.add(form);
+        
+        complaintService.addComplaint(form);
         this.addComplaintForm.reset();
     }
 
@@ -51,7 +46,7 @@ class AddComplaint extends React.Component {
                         </div>
                         <div className="mb-3">
                             <label forhtml="exampleInputPassword1" className="form-label">Complaints</label>
-                            <textarea className="form-control" id="exampleInputPassword1" rows="5" name="complaint" onKeyUp={this.onFormType} />
+                            <textarea className="form-control" id="exampleInputPassword1" rows="5" name="complaint_desc" onKeyUp={this.onFormType} />
                         </div>
 
                         <button type="submit" className="btn btn-primary">Submit</button>
