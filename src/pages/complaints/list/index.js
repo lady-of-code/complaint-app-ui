@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import complaintService from "../../../services/complaints.service";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 
 class ListComplaint extends React.Component {
@@ -56,7 +56,7 @@ class ListComplaint extends React.Component {
                                                     <td>{d.created_at}</td>
                                                     <td>
                                                     <Link to={"/edit/"+d.id}><FontAwesomeIcon icon={icon({name: 'pencil', style: 'solid'})} /></Link> &nbsp;
-                                                    <a href="#"><FontAwesomeIcon icon={icon({name: 'eye', style: 'solid'})} /></a> &nbsp;
+                                                    <Link to={"/view/"+d.id}><FontAwesomeIcon icon={icon({name: 'eye', style: 'solid'})} /></Link> &nbsp;
                                                     <a href="#"><FontAwesomeIcon icon={icon({name: 'trash', style: 'solid'})} /></a> 
                                                 
                                                     </td>

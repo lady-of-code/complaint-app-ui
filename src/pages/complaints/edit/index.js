@@ -1,11 +1,6 @@
 import React from "react";
-
-import { useParams } from "react-router-dom";
-
 import complaintService from './../../../services/complaints.service';
-function withParams(Component) {
-    return props => <Component {...props} params={useParams()} />;
-}
+import withParams from "../../../helper/withParams";
 
 class EditComplaint extends React.Component {
     constructor(props) {
@@ -26,8 +21,8 @@ class EditComplaint extends React.Component {
         event.preventDefault()
         let form = this.state;
         console.log(form);
-        // complaintService.addComplaint(form);
-        // this.addComplaintForm.reset();
+        complaintService.editComplaint(form,form.id);
+        this.addComplaintForm.reset();
     }
 
     onFormType(event) {

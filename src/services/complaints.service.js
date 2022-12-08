@@ -57,6 +57,25 @@ const complaintService = {
     
           const data = await res.json();
           return data;
+    },
+    editComplaint:async (complaint,id)=>{
+        console.log(complaint);
+        const res = await fetch(`${complaintService.apiUrl}/complaints/${id}`, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              "x-access-token": "token-value",
+            },
+            body: JSON.stringify(complaint),
+          });
+    
+          if (!res.ok) {
+            const message = `An error has occured: ${res.status} - ${res.statusText}`;
+            throw new Error(message);
+          }
+    
+          const data = await res.json();
+          return data;
     }
 
 };
