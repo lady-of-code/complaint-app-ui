@@ -55,7 +55,7 @@ class ListComplaint extends React.Component {
                                                     <td>{d.complaint_desc}</td>
                                                     <td>{d.created_at}</td>
                                                     <td>
-                                                    <a href="#"><FontAwesomeIcon icon={icon({name: 'pencil', style: 'solid'})} /></a> &nbsp;
+                                                    <Link to={"/edit/"+d.id}><FontAwesomeIcon icon={icon({name: 'pencil', style: 'solid'})} /></Link> &nbsp;
                                                     <a href="#"><FontAwesomeIcon icon={icon({name: 'eye', style: 'solid'})} /></a> &nbsp;
                                                     <a href="#"><FontAwesomeIcon icon={icon({name: 'trash', style: 'solid'})} /></a> 
                                                 

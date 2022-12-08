@@ -17,6 +17,15 @@ const complaintService = {
         complaints.push(complaint);
         localStorage.setItem("complaints", JSON.stringify(complaints))
     },
+    fetchComplaint:async(id)=>{
+        try{
+            let response = await fetch(complaintService.apiUrl+"/complaints/"+id);
+            response = await response.json();
+            return response;
+        }catch(e){
+            console.log("error is :",e);
+        }
+    },
     deleteAll:()=>{
         localStorage.removeItem("complaints");
     },
