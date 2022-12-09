@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import React from "react";
 import complaintService from "../../../services/complaints.service";
 import Card from "../../../ui-components/card";
@@ -9,6 +10,7 @@ class ViewComplaint extends React.Component {
 
         let { id } = this.props.params;
         this.state = { id: id, data: {}, label: " " }
+        this.deleteComplaint= this.deleteComplaint.bind(this)
     }
 
     async componentDidMount() {
@@ -16,15 +18,26 @@ class ViewComplaint extends React.Component {
         let data = await complaintService.fetchComplaint(id);
         this.setState({ data: data.data[0] })
     }
-
+   
+   async deleteComplaint(event){
+        
+        let { id } = this.state;
+        let response= await complaintService.deleteComplaint(id);
+        console.log(response);
+        this.setState({id:0});
+      }
+    
 
     render() {
-        let { data, label } = this.state;
+        let { data, label,id } = this.state;
+        if(id!=0){
+            
         return (<React.Fragment>
             <div className="container">
                 <div className="row">
                     <div className="col pt-3">
                         <h3>{label}</h3>
+                        <button className="btn btn-outine-danger float-end" type="button" onClick={this.deleteComplaint}>Delete</button>
                     </div>
                 </div>
             </div>
@@ -37,6 +50,14 @@ class ViewComplaint extends React.Component {
                 </div>
             </div>
         </React.Fragment>)
+        }
+        else{
+            return (<React.Fragment>
+                <Navigate to={"/list"}/>
+
+            
+            </React.Fragment>)
+        }
     }
 }
 

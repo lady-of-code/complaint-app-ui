@@ -76,6 +76,20 @@ const complaintService = {
     
           const data = await res.json();
           return data;
+    },
+    deleteComplaint:async (id)=>{
+        
+        const res = await fetch(`${complaintService.apiUrl}/complaints/${id}`, {
+            method: "delete" 
+          });
+    
+          if (!res.ok) {
+            const message = `An error has occured: ${res.status} - ${res.statusText}`;
+            throw new Error(message);
+          }
+    
+          const data = await res.json();
+          return data;
     }
 
 };

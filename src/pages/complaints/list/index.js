@@ -10,6 +10,7 @@ class ListComplaint extends React.Component {
         super(props);
         let storage = complaintService.list();
         this.state = { data: storage, label: "Complaint List" }
+        
     }
 
     async componentDidMount() {
@@ -17,6 +18,8 @@ class ListComplaint extends React.Component {
         console.log(label.data);
         this.setState({ data: label.data })
     }
+
+  
 
     render() {
         let { data, label } = this.state;
@@ -57,7 +60,7 @@ class ListComplaint extends React.Component {
                                                     <td>
                                                     <Link to={"/edit/"+d.id}><FontAwesomeIcon icon={icon({name: 'pencil', style: 'solid'})} /></Link> &nbsp;
                                                     <Link to={"/view/"+d.id}><FontAwesomeIcon icon={icon({name: 'eye', style: 'solid'})} /></Link> &nbsp;
-                                                    <a href="#"><FontAwesomeIcon icon={icon({name: 'trash', style: 'solid'})} /></a> 
+                                            
                                                 
                                                     </td>
                                                 </tr>
